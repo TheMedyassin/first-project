@@ -74,49 +74,28 @@ button,input,textarea{font:inherit}
 .footer{display:flex;align-items:center;justify-content:space-around;gap:10px;margin:9px 19px 0;padding:8px 10px;border-radius:15px;background:#f2ccd3;color:#674c52;font-weight:700;text-align:center;font-size:16px;line-height:1.4;}
 .footer-item{flex:1;min-width:0}
 .footer-item .field{text-align:center;font-size:16px;font-weight:700;}
-@media(max-width:900px){
- .hero{padding-inline:12px;grid-template-columns:.85fr 1.6fr .85fr;height:135px}
- .hero-note{font-size:15px}.hero-quote{font-size:17px}.hero-title .field{font-size:37px}.hero-subtitle{font-size:16px}
- .poster-grid{grid-template-columns:minmax(0,1fr);padding:0 12px;}
- .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}
- .schedule-header,.schedule-row{grid-template-columns:1.15fr 1fr .56fr;}
- .schedule-row{min-height:48px;}
- .details-cell .field{font-size:15px}.activity-cell,.activity-cell .field{font-size:17px}.time-cell .field{font-size:16px;}
- .side-title{font-size:21px}
-}
+
+/* Keep one consistent desktop-style planner sheet on every screen size.
+   Scale the complete 1200px layout to the available width instead of reflowing cards. */
+#poster-wrap{display:flex;justify-content:center;overflow:hidden;padding:0 0 22px;}
+.poster{width:1200px!important;max-width:none!important;flex:0 0 1200px;transform:scale(var(--poster-scale,1));transform-origin:top center;margin-bottom:calc((var(--poster-scale,1) - 1)*1280px);}
+.details-cell{position:relative;}
+.details-cell .field{padding-left:58px;}
+.row-controls{position:absolute;left:4px;top:50%;transform:translateY(-50%);display:flex;gap:3px;z-index:2;direction:ltr;}
+.row-move{width:24px;height:25px;padding:0;border:1px solid #c8a8af;border-radius:7px;background:#fff8f2;color:#65454e;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 1px 2px rgba(80,50,55,.08);}
+.row-move:disabled{opacity:.28;cursor:default;}
+.emoji-input{display:inline-block;width:2.05em;min-width:2.05em;max-width:2.05em;padding:0;border:1px solid transparent;border-radius:6px;background:transparent;color:inherit;text-align:center;font:inherit;line-height:1.15;vertical-align:middle;outline:none;}
+.emoji-input:focus{border-color:#b98793;background:rgba(255,255,255,.72);box-shadow:0 0 0 2px rgba(214,164,177,.18);}
+.doodle .emoji-input{width:.95em;min-width:.95em;max-width:.95em;}
 @media(max-width:600px){
- .toolbar-wrap{padding:8px 10px}.toolbar{gap:7px}.brand{width:100%;margin-bottom:1px;font-size:14px}.tool-button{flex:1;min-width:calc(33.333% - 7px);padding:9px 7px;font-size:12px;min-height:40px}.save-state{width:100%;text-align:center;}
+ .toolbar-wrap{padding:8px 10px;}
+ .toolbar{gap:7px;}
+ .brand{width:100%;margin-inline-end:0;margin-bottom:1px;font-size:14px;}
+ .tool-button{flex:1;min-width:calc(50% - 5px);padding:9px 7px;font-size:12px;min-height:40px;}
+ .save-state{width:100%;text-align:center;}
  .helper{margin:7px auto 10px;font-size:11px;}
- #poster-wrap{padding:0 8px 18px}
- .poster{min-height:0;border-radius:14px;box-shadow:0 3px 18px rgba(113,81,72,.07);}
- .hero{height:auto;grid-template-columns:1fr;gap:5px;padding:14px 12px 13px;}
- .hero-note{order:2;font-size:14px;line-height:1.4;max-width:none;}
- .hero-title-wrap{order:1}
- .hero-title{padding:2px 17px 5px;border-radius:24px}
- .hero-title .field{font-size:32px;line-height:1.4;text-align:center;}
- .hero-subtitle{font-size:14px;margin-top:5px;}
- .hero-quote{order:3;font-size:15px;padding:0;line-height:1.3}
- .doodle{display:inline;font-size:21px;margin:0 4px}
- .poster-grid{padding:0 9px;gap:10px;}
- .schedule-header{display:none;}
- .schedule-list{gap:7px;}
- .schedule-row{grid-template-columns:minmax(0,1fr) 116px;grid-template-areas:"activity time" "details details";gap:4px 6px;padding:7px;border:1px solid rgba(177,145,140,.24);border-radius:13px;background:color-mix(in srgb,var(--rowbg,#f8e7e8) 35%, white);}
- .schedule-row .cell{border:0;border-radius:8px;padding:4px 5px;min-height:0;}
- .activity-cell{font-size:16px;gap:5px;align-items:center;}
- .activity-cell .field{font-size:16px;line-height:1.35;}
- .activity-icon{font-size:22px;}
- .time-cell{font-size:14px;background:rgba(255,255,255,.5);}
- .time-cell .field{font-size:14px;font-weight:700;}
- .details-cell .field{font-size:13px;line-height:1.45;min-height:18px;}
- .sidebar{grid-template-columns:minmax(0,1fr);gap:9px;}
- .side-card{padding:11px 12px;border-radius:14px;}
- .side-title{font-size:20px;margin-bottom:8px;}
- .prayer-line{grid-template-columns:minmax(0,1fr) 105px;padding:4px 7px;}
- .prayer-name,.prayer-name .field{font-size:15px;}.prayer-time{font-size:14px;}
- .checkline,.checkline .field{font-size:14px;}.goals-card .checkline,.goals-card .checkline .field{font-size:14px;}
- .footer{margin:10px 9px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:13px;padding:9px 7px;}
- .footer-item .field{font-size:13px;}
 }
+@media print{.row-controls{display:none!important;}}
 @media print{
  @page{size:225mm 240mm;margin:0}
  html,body{width:225mm!important;height:240mm!important;min-height:240mm!important;margin:0!important;padding:0!important;background:var(--paper)!important;overflow:hidden!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
@@ -155,6 +134,8 @@ const defaults={
  leftNote:'خطوة صغيرة كل يوم تصنع فرقًا كبيرًا في مستقبلي',
  quote:'بسم الله نبدأ...',
  subtitle:'♥ تنظيم .. عبادة .. تطوير .. نجاح ♥',
+ icons:{prayer:'🕌',reels:'🎬',chores:'🏠',goals:'🎯'},
+ doodles:['♡','☕','📚'],
  headers:{details:'التفاصيل',activities:'الأنشطة',time:'الوقت'},
  schedule:[
   {time:'04:30 – 05:00',activity:'الاستيقاظ + صلاة الفجر',icon:'🕌',details:'الاستيقاظ، الوضوء، صلاة الفجر ثم أذكار الصباح الخفيفة.',color:'#f9e8e8'},
@@ -224,20 +205,21 @@ function getSaved(){try{const x=localStorage.getItem(STORAGE_KEY);if(x){const pa
 function mergeDefaults(base,custom){if(!custom||typeof custom!=='object')return base;for(const k of Object.keys(base)){if(Array.isArray(base[k])){if(Array.isArray(custom[k]))base[k]=base[k].map((v,i)=>{if(custom[k][i]===undefined)return v;if(v&&typeof v==='object'&&!Array.isArray(v))return mergeDefaults(v,custom[k][i]);return custom[k][i]})}else if(base[k]&&typeof base[k]==='object'){base[k]=mergeDefaults(base[k],custom[k])}else if(custom[k]!==undefined&&typeof custom[k]===typeof base[k])base[k]=custom[k]}return base}
 function setPath(obj,path,val){const p=path.split('.');let at=obj;for(let i=0;i<p.length-1;i++)at=at[p[i]];at[p[p.length-1]]=val}
 function field(path,value,cls='',label='') {return `<input class="field ${cls}" data-path="${esc(path)}" aria-label="${esc(label||String(value))}" value="${esc(value)}" autocomplete="off" spellcheck="false">`}
+function emojiField(path,value,label='تعديل الرمز التعبيري') {return `<input type="text" class="emoji-input" data-path="${esc(path)}" aria-label="${esc(label)}" value="${esc(value)}" maxlength="8" autocomplete="off" spellcheck="false">`}
 function detailField(path,value){return `<textarea class="field" data-path="${esc(path)}" aria-label="${esc(value)}" rows="2" spellcheck="false">${esc(value)}</textarea>`}
 function checklist(items,path,extra=''){return `<div class="check-list ${extra}">${items.map((it,i)=>`<label class="checkline ${it.checked?'done':''}"><input type="checkbox" data-checkpath="${path}.${i}.checked" ${it.checked?'checked':''} aria-label="إنجاز ${esc(it.text)}"><input class="field" data-path="${path}.${i}.text" aria-label="${esc(it.text)}" value="${esc(it.text)}" autocomplete="off"></label>`).join('')}</div>`}
 function render(){
  const schedule=data.schedule.map((r,i)=>`<div class="schedule-row" style="--rowbg:${r.color||'#f8e7e8'}">
-  <div class="cell details-cell">${detailField(`schedule.${i}.details`,r.details)}</div>
-  <div class="cell activity-cell"><span class="activity-icon" aria-hidden="true">${esc(r.icon)}</span>${field(`schedule.${i}.activity`,r.activity,'',r.activity)}</div>
+  <div class="cell details-cell">${detailField(`schedule.${i}.details`,r.details)}<div class="row-controls"><button type="button" class="row-move" data-move="up" data-index="${i}" aria-label="نقل النشاط إلى الأعلى" title="نقل لأعلى" ${i===0?'disabled':''}>↑</button><button type="button" class="row-move" data-move="down" data-index="${i}" aria-label="نقل النشاط إلى الأسفل" title="نقل لأسفل" ${i===data.schedule.length-1?'disabled':''}>↓</button></div></div>
+  <div class="cell activity-cell">${emojiField(`schedule.${i}.icon`,r.icon,`رمز ${r.activity}`)}${field(`schedule.${i}.activity`,r.activity,'',r.activity)}</div>
   <div class="cell time-cell">${field(`schedule.${i}.time`,r.time,'ltr',`الوقت ${r.activity}`)}</div>
  </div>`).join('');
- const prayers=data.prayers.map((p,i)=>`<div class="prayer-line"><div class="prayer-time">${field(`prayers.${i}.time`,p.time,'ltr',`وقت صلاة ${p.name}`)}</div><div class="prayer-name"><span class="activity-icon" aria-hidden="true">${esc(p.icon)}</span>${field(`prayers.${i}.name`,p.name,'',p.name)}</div></div>`).join('');
+ const prayers=data.prayers.map((p,i)=>`<div class="prayer-line"><div class="prayer-time">${field(`prayers.${i}.time`,p.time,'ltr',`وقت صلاة ${p.name}`)}</div><div class="prayer-name">${emojiField(`prayers.${i}.icon`,p.icon,`رمز صلاة ${p.name}`)}${field(`prayers.${i}.name`,p.name,'',p.name)}</div></div>`).join('');
  document.getElementById('poster').innerHTML=`
  <header class="hero">
   <div class="hero-note">${field('leftNote',data.leftNote,'','عبارة تحفيزية')} <span class="heart">♥</span></div>
   <div class="hero-title-wrap"><div class="hero-title">${field('title',data.title,'','عنوان الجدول')}</div><div class="hero-subtitle">${field('subtitle',data.subtitle,'','عبارة تحت العنوان')}</div></div>
-  <div class="hero-quote">${field('quote',data.quote,'','العبارة العلوية')}<span class="doodle">♡ ☕ 📚</span></div>
+  <div class="hero-quote">${field('quote',data.quote,'','العبارة العلوية')}<span class="doodle">${data.doodles.map((symbol,i)=>emojiField(`doodles.${i}`,symbol,'تعديل الرمز الزخرفي')).join(' ')}</span></div>
  </header>
  <div class="poster-grid">
   <section class="schedule-section" aria-label="الجدول اليومي">
@@ -245,10 +227,10 @@ function render(){
    <div class="schedule-list">${schedule}</div>
   </section>
   <aside class="sidebar">
-   <section class="side-card prayer-card"><h2 class="side-title"><span class="mini-icon">🕌</span>${field('prayerTitle',data.prayerTitle,'','عنوان أوقات الصلاة')}</h2><div class="prayer-list">${prayers}</div><div class="prayer-note">${field('prayerNote',data.prayerNote,'','ملاحظة أوقات الصلاة')}</div></section>
-   <section class="side-card reels-card"><h2 class="side-title"><span class="mini-icon">🎬</span>${field('reelsTitle',data.reelsTitle,'','عنوان الريلزات الأسبوعية')}</h2><div class="feature-note">${field('reelsNote',data.reelsNote,'','موعد النشر')}</div>${checklist(data.reels,'reels')}</section>
-   <section class="side-card chores-card"><h2 class="side-title"><span class="mini-icon">🏠</span>${field('choresTitle',data.choresTitle,'','عنوان المهام المنزلية')}</h2>${checklist(data.chores,'chores')}</section>
-   <section class="side-card goals-card"><h2 class="side-title"><span class="mini-icon">🎯</span>${field('goalsTitle',data.goalsTitle,'','عنوان الأهداف')}</h2>${checklist(data.goals,'goals')}</section>
+   <section class="side-card prayer-card"><h2 class="side-title"><span class="mini-icon">${emojiField('icons.prayer',data.icons.prayer,'رمز بطاقة أوقات الصلاة')}</span>${field('prayerTitle',data.prayerTitle,'','عنوان أوقات الصلاة')}</h2><div class="prayer-list">${prayers}</div><div class="prayer-note">${field('prayerNote',data.prayerNote,'','ملاحظة أوقات الصلاة')}</div></section>
+   <section class="side-card reels-card"><h2 class="side-title"><span class="mini-icon">${emojiField('icons.reels',data.icons.reels,'رمز بطاقة الريلزات')}</span>${field('reelsTitle',data.reelsTitle,'','عنوان الريلزات الأسبوعية')}</h2><div class="feature-note">${field('reelsNote',data.reelsNote,'','موعد النشر')}</div>${checklist(data.reels,'reels')}</section>
+   <section class="side-card chores-card"><h2 class="side-title"><span class="mini-icon">${emojiField('icons.chores',data.icons.chores,'رمز بطاقة المهام المنزلية')}</span>${field('choresTitle',data.choresTitle,'','عنوان المهام المنزلية')}</h2>${checklist(data.chores,'chores')}</section>
+   <section class="side-card goals-card"><h2 class="side-title"><span class="mini-icon">${emojiField('icons.goals',data.icons.goals,'رمز بطاقة الأهداف')}</span>${field('goalsTitle',data.goalsTitle,'','عنوان الأهداف')}</h2>${checklist(data.goals,'goals')}</section>
    <div class="prayer-note">${field('endQuote',data.endQuote,'','عبارة ختامية')}</div>
   </aside>
  </div>
@@ -256,17 +238,21 @@ function render(){
  document.querySelectorAll('.checkline input[type="checkbox"]').forEach(el=>el.addEventListener('change',e=>{setPath(data,e.target.dataset.checkpath,e.target.checked);e.target.closest('.checkline').classList.toggle('done',e.target.checked);save();}));
  document.querySelectorAll('textarea.field').forEach(el=>{fitTextarea(el);el.addEventListener('input',()=>fitTextarea(el))});
 }
+document.getElementById('poster').addEventListener('click',e=>{const button=e.target.closest('[data-move]');if(!button)return;const from=Number(button.dataset.index);const to=from+(button.dataset.move==='up'?-1:1);if(!Number.isInteger(from)||to<0||to>=data.schedule.length)return;[data.schedule[from],data.schedule[to]]=[data.schedule[to],data.schedule[from]];render();save();});
 function fitTextarea(el){el.style.height='auto';const base=window.matchMedia('(max-width:600px)').matches?19:22;el.style.height=Math.max(base,Math.min(el.scrollHeight,72))+'px'}
 let saveTimer;
+function updatePosterScale(){const poster=document.getElementById('poster');const wrap=document.getElementById('poster-wrap');if(!poster||!wrap)return;const available=Math.max(240,wrap.clientWidth-8);const scale=Math.min(1,available/1200);poster.style.setProperty('--poster-scale',String(scale));}
 function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));const s=document.getElementById('save-state');s.textContent='تم الحفظ تلقائيًا ✓';clearTimeout(saveTimer);saveTimer=setTimeout(()=>s.textContent='تُحفظ التعديلات على هذا الجهاز',1800)}catch(e){document.getElementById('save-state').textContent='تعذر الحفظ محليًا'}}
 document.addEventListener('input',e=>{const el=e.target;if(el.matches('[data-path]')){setPath(data,el.dataset.path,el.value);save();}});
 document.getElementById('reset').addEventListener('click',()=>{if(confirm('هل تريدين استعادة النصوص والأوقات الافتراضية؟ سيُستبدل الجدول الحالي.')){data=clone(defaults);try{localStorage.removeItem(STORAGE_KEY)}catch(e){}render();save();window.scrollTo({top:0,behavior:'smooth'})}});
 function clonePosterForExport(){
  const source=document.getElementById('poster');const copy=source.cloneNode(true);copy.classList.add('export-mode');copy.removeAttribute('id');
+ copy.querySelectorAll('.row-controls').forEach(el=>el.remove());
+ copy.querySelectorAll('input.emoji-input').forEach(input=>{const span=document.createElement('span');span.className=input.closest('.activity-cell,.prayer-name')?'activity-icon':'emoji-display';span.textContent=input.value;input.replaceWith(span)});
  copy.querySelectorAll('input.field').forEach(input=>{const span=document.createElement('span');span.className=input.className+' field-display';span.textContent=input.value;span.setAttribute('aria-label',input.getAttribute('aria-label')||'');input.replaceWith(span)});
  copy.querySelectorAll('textarea.field').forEach(input=>{const span=document.createElement('span');span.className=input.className+' field-display';span.textContent=input.value;input.replaceWith(span)});
  copy.querySelectorAll('input[type="checkbox"]').forEach(input=>{const span=document.createElement('span');span.className='export-check';span.textContent=input.checked?'☑':'☐';input.replaceWith(span)});
- copy.style.width='1200px';copy.style.height='1280px';copy.style.minHeight='1280px';copy.style.maxWidth='none';copy.style.margin='0';copy.style.borderRadius='0';copy.style.boxShadow='none';copy.style.overflow='hidden';
+ copy.style.width='1200px';copy.style.height='1280px';copy.style.minHeight='1280px';copy.style.maxWidth='none';copy.style.margin='0';copy.style.marginBottom='0';copy.style.borderRadius='0';copy.style.boxShadow='none';copy.style.overflow='hidden';copy.style.transform='none';copy.style.setProperty('--poster-scale','1');
  return copy;
 }
 const exportOverrides=`
@@ -280,23 +266,63 @@ const exportOverrides=`
 .poster.export-mode .sidebar{display:flex!important;flex-direction:column!important;gap:11px!important}.poster.export-mode .side-card{padding:12px 13px 11px!important;border-radius:17px!important}.poster.export-mode .side-title{font-size:23px!important}.poster.export-mode .footer{margin:9px 19px 0!important;display:flex!important;font-size:16px!important}.poster.export-mode .footer-item .field{font-size:16px!important}
 .poster.export-mode .field{border-color:transparent!important;box-shadow:none!important;background:transparent!important;padding:0!important}.poster.export-mode .field-display{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;color:inherit;line-height:inherit}.poster.export-mode .export-check{flex:0 0 16px;font-size:16px;font-family:Arial,sans-serif;color:#6f8067;line-height:1.2}
 `;
+
+async function loadHtml2Canvas(){
+ if(window.html2canvas)return window.html2canvas;
+ await new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+  script.onload=resolve;
+  script.onerror=()=>reject(new Error('تعذر تحميل أداة إنشاء الصور. تحققي من اتصال الإنترنت ثم حاولي مرة أخرى.'));
+  document.head.appendChild(script);
+ });
+ if(!window.html2canvas)throw new Error('لم يتم تحميل أداة إنشاء الصور.');
+ return window.html2canvas;
+}
 async function downloadPNG(){
  const btn=document.getElementById('download-image');const old=btn.textContent;btn.disabled=true;btn.textContent='جارٍ تجهيز الصورة…';
+ let holder=null;
  try{
-  const copy=clonePosterForExport();const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n')+exportOverrides;
-  const wrapper=`<div xmlns="http://www.w3.org/1999/xhtml" style="width:1200px;height:1280px;overflow:hidden;background:#fff8f2;color:#292126;direction:rtl;font-family:Tahoma,Arial,'Noto Naskh Arabic',sans-serif;--paper:#fff8f2;--ink:#292126;--muted:#76646a;--pink:#efc6d0;--border:#cbb6ad;--rose:#f6dce1;--blue:#e2eef9;--green:#e6efe1;--lav:#eee2f5;--sand:#f9ecd9;--mint:#e1f0ed">${copy.outerHTML}</div>`;
-  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1280" viewBox="0 0 1200 1280"><defs><style><![CDATA[${css.replace(/]]>/g,'] ]>')}]]></style></defs><foreignObject width="1200" height="1280">${wrapper}</foreignObject></svg>`;
-  const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'});const url=URL.createObjectURL(blob);const img=new Image();
-  await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('تعذر تحويل التصميم إلى صورة في هذا المتصفح'));img.src=url});
-  const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1280;const ctx=canvas.getContext('2d');ctx.fillStyle='#fff8f2';ctx.fillRect(0,0,1200,1280);ctx.drawImage(img,0,0,1200,1280);URL.revokeObjectURL(url);
-  const png=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('تعذر إنشاء ملف الصورة')),'image/png'));
-  const link=document.createElement('a');link.href=URL.createObjectURL(png);link.download='jadwali-al-yawmi.png';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),2000);
-  document.getElementById('save-state').textContent='تم تجهيز الصورة ✓';
- }catch(err){alert('لم يتم إنشاء PNG داخل هذا المتصفح. يمكنك تنزيل نسخة SVG من التصميم.\n'+err.message);try{const copy=clonePosterForExport();const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n')+exportOverrides;const wrapper=`<div xmlns="http://www.w3.org/1999/xhtml" style="width:1200px;height:1280px;overflow:hidden;background:#fff8f2;color:#292126;direction:rtl;font-family:Tahoma,Arial,'Noto Naskh Arabic',sans-serif;--paper:#fff8f2;--ink:#292126;--muted:#76646a;--pink:#efc6d0;--border:#cbb6ad;--rose:#f6dce1;--blue:#e2eef9;--green:#e6efe1;--lav:#eee2f5;--sand:#f9ecd9;--mint:#e1f0ed">${copy.outerHTML}</div>`;const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1280" viewBox="0 0 1200 1280"><defs><style><![CDATA[${css}]]></style></defs><foreignObject width="1200" height="1280">${wrapper}</foreignObject></svg>`;const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}));link.download='jadwali-al-yawmi.svg';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),2000)}catch(e){}}
- finally{btn.disabled=false;btn.textContent=old}
+  const renderCanvas=await loadHtml2Canvas();
+  const copy=clonePosterForExport();
+  holder=document.createElement('div');
+  holder.setAttribute('aria-hidden','true');
+  holder.style.cssText='position:fixed;left:0;top:0;width:1200px;height:1280px;overflow:hidden;z-index:-1;pointer-events:none;background:#fff8f2;direction:rtl;';
+  holder.appendChild(copy);
+  document.body.appendChild(holder);
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+  const canvas=await renderCanvas(copy,{
+   backgroundColor:'#fff8f2',
+   scale:2,
+   width:1200,
+   height:1280,
+   windowWidth:1200,
+   windowHeight:1280,
+   scrollX:0,
+   scrollY:0,
+   useCORS:true,
+   allowTaint:false,
+   logging:false
+  });
+  if(!canvas||canvas.width<1200||canvas.height<1280)throw new Error('حجم الصورة الناتجة غير صحيح.');
+  const png=await new Promise((resolve,reject)=>canvas.toBlob(blob=>{
+   if(!blob||blob.type!=='image/png'||blob.size<5000){reject(new Error('لم يتم إنشاء صورة PNG صالحة.'));return;}
+   resolve(blob);
+  },'image/png'));
+  const url=URL.createObjectURL(png);
+  const link=document.createElement('a');link.href=url;link.download='jadwali-al-yawmi.png';document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),3000);
+  document.getElementById('save-state').textContent='تم تنزيل صورة PNG ✓';
+ }catch(err){
+  alert('تعذر إنشاء صورة PNG. لم يتم تنزيل ملف فارغ.\n'+(err&&err.message?err.message:'يرجى المحاولة مرة أخرى.'));
+ }finally{
+  if(holder)holder.remove();
+  btn.disabled=false;btn.textContent=old;
+ }
 }
 document.getElementById('download-image').addEventListener('click',downloadPNG);
-data=getSaved();render();
+data=getSaved();render();updatePosterScale();window.addEventListener('resize',updatePosterScale,{passive:true});window.addEventListener('orientationchange',updatePosterScale);
 </script>
 </body>
 </html>
